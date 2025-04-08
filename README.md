@@ -1,27 +1,72 @@
-# DynamicFormBuilder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
+# 📄 Dynamic Form Builder – Angular (Admin & User Roles)
 
-## Development server
+This project is a **dynamic form builder and renderer** built using Angular. It allows **admins to mange form templates** and **users to fill and submit them**. The system supports role-based access, form preview, dynamic controls, and local persistence.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![alt text](image.png)
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Features
 
-## Build
+- ✅ **Role Based Login**
+- ✅ **Dynamic Form Rendering** (User side)
+- ✅ **Reactive Forms with Validation**
+- ✅ **Checkbox, Radio, Select, Date, Text, Textarea Support**
+- ✅ **Local Storage Persistence**
+- ✅ **Angular Material UI**
+- ✅ **Role-Based Routing (Admin/User)**
+- ✅ **Form Reset, Save & Validation Feedback**
+- ✅ **Logout Feature**
+- ✅ **NgRx State Management**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## 🛠 Tech Stack
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular** 14+
+- **Angular Material** for UI components
+- **Reactive Forms**
+- **LocalStorage** for mock API
+- **Typescript**
+- **NgRx** for state management
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 📂 Project Structure (Brief)
 
-## Further help
+```
+src/
+├── app/
+│   ├── form-fill/             # Form rendering and submission
+│   ├── form-list/             # List of form templates
+│   ├── services/              # FormTemplateService for CRUD
+│   ├── state/                 # NgRx Actions, Reducers, Selectors
+│   └── app-routing.module.ts # Routes with role-based access
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+## ▶️ Run Locally
+
+```bash
+# Clone the repo
+git clone https://github.com/pavan2540/Dynamic-fb-Angular-Admin-User.git
+cd Dynamic-fb-Angular-Admin-User
+
+# Install dependencies
+npm install
+
+# Start the app
+ng serve
+```
+
+---
+
+## 🧰 Available Scripts
+
+- `ng serve` – Run the dev server
+- `ng test` – Run unit tests
+- `ng build` – Build the app for production
+
+---
