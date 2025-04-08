@@ -1,0 +1,26 @@
+<div class="login-container">
+  <div class="login-box animate-slide-in">
+    <div class="login-header">
+      <img src="assets/dc.png" alt="App Logo" class="logo" />
+      <h2>Dynamic Form App</h2>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Select Role</mat-label>
+      <mat-select [(value)]="selectedRole">
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="user">User</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width"
+      (click)="login()"
+      [disabled]="!selectedRole"
+    >
+      Login
+    </button>
+  </div>
+</div>

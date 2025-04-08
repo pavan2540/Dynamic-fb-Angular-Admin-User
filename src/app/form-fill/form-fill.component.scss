@@ -1,0 +1,113 @@
+@import '~@angular/material/theming';
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+mat-card {
+  max-width: 800px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 12px !important;
+
+  &-header {
+    margin-bottom: 2rem;
+    padding: 0;
+
+    mat-card-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #3f51b5;
+    }
+
+    mat-card-subtitle {
+      color: #666;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &-actions {
+    margin-top: 1.5rem;
+    padding: 0 !important;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 500;
+    color: #444;
+    font-size: 0.9rem;
+  }
+}
+
+.radio-group, .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  label {
+    font-weight: 500;
+    color: #444;
+    font-size: 0.9rem;
+  }
+}
+
+.radio-button {
+  margin-right: 1rem;
+}
+
+.checkbox-option {
+  margin-bottom: 0.5rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button[mat-raised-button] {
+  padding: 0.5rem 2rem;
+  font-weight: 500;
+  font-size: 1rem;
+
+  mat-icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+}
+
+// Snackbar styles
+.success-snackbar {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  .form-container {
+    padding: 1rem;
+  }
+
+  mat-card {
+    padding: 1.5rem;
+  }
+}

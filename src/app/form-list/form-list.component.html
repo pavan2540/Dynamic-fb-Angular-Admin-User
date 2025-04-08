@@ -1,0 +1,14 @@
+<h2>Form Templates</h2>
+<div *ngIf="templates">
+<ul *ngIf="templates.length > 0">
+  <li *ngFor="let form of templates">
+    <strong>{{ form.fields[0].value }}</strong>
+    <button (click)="onEdit(form.id)">Edit</button>
+    <button (click)="onPreview(form.id)">Preview</button>
+    <button (click)="onDelete(form.id)">Delete</button>
+  </li>
+</ul>
+</div>
+<div *ngIf="templates.length === 0" class="no-templates">
+  <p>No form templates available.</p>
+</div>
