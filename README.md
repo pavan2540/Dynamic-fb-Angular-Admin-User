@@ -2,9 +2,6 @@
 # 📄 Dynamic Form Builder – Angular (Admin & User Roles)
 
 This project is a **dynamic form builder and renderer** built using Angular. It allows **admins to mange form templates** and **users to fill and submit them**. The system supports role-based access, form preview, dynamic controls, and local persistence.
-
-![alt text](image.png)
-
 ---
 
 ## 🚀 Features
@@ -62,6 +59,12 @@ ng serve
 ```
 
 ---
+
+## 🧰 Screenshots
+
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 ## 🧰 Available Scripts
 
