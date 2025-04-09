@@ -59,12 +59,16 @@ mat-card {
   margin-bottom: 1rem;
 
   label {
+    margin-right: 10px;
     font-weight: 500;
     color: #444;
     font-size: 0.9rem;
   }
 }
 
+.mat-radio-container {
+  margin-left: 10px;
+}
 .radio-button {
   margin-right: 1rem;
 }

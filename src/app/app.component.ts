@@ -8,6 +8,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'admin-user-dynamic-fb';
   role: 'admin' | 'user' | null = null;
 
   constructor(private authService: AuthService, private router: Router) {

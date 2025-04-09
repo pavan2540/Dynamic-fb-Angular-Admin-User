@@ -21,8 +21,21 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    "skipLibCheck": true,
+    "types": [
+      "jasmine"
     ]
   },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts",
+    "src/test.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
