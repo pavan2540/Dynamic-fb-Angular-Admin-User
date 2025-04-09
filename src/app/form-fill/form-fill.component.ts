@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormTemplate, FormTemplateService } from 'src/app/services/form-template.service';
@@ -71,8 +71,9 @@ export class FormFillComponent implements OnInit {
     private formTemplateService: FormTemplateService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     // Replace this with dynamic loading if needed
@@ -94,7 +95,7 @@ export class FormFillComponent implements OnInit {
       this.templateId = params.get('id');
       this.route.data.subscribe(data => {
         this.isPreview = data['isPreview'] || false;
-  
+
         if (this.templateId) {
           this.loadTemplateFromLocalStorage(this.templateId);
         }
@@ -107,16 +108,16 @@ export class FormFillComponent implements OnInit {
   loadTemplateFromLocalStorage(id: string): void {
     const savedTemplates = JSON.parse(localStorage.getItem('form_templates') || '[]');
     const template = savedTemplates.find((t: any) => t.id.toString() === id);
-  
+
     if (template) {
       this.populateForm(template);
-  
+
       if (this.isPreview && this.form) {
         Object.values(this.form.controls).forEach(control => control.disable());
       }
     }
   }
-  
+
   loadTemplate(id: string): void {
     this.formTemplateService.getTemplateById(id).subscribe(template => {
       if (template) {
@@ -132,16 +133,16 @@ export class FormFillComponent implements OnInit {
 
   populateForm(template: FormTemplate): void {
     const group: { [key: string]: FormControl } = {};
-  
+
     template.fields.forEach(field => {
       const validators = field.required ? [Validators.required] : [];
       group[field.key] = new FormControl(field.value || '', validators);
     });
-  
+
     this.formGroup = new FormGroup(group);
     this.fields = template.fields;
   }
-  
+
 
 
   onSubmit() {
@@ -154,52 +155,30 @@ export class FormFillComponent implements OnInit {
             ...field,
             value: field.type === 'checkbox'
               ? this.getCheckboxOptions(field.key).controls
-                  .map((ctrl: any, idx: any) => ctrl.value ? field.options[idx] : null)
-                  .filter((v: any) => v !== null)
+                .map((ctrl: any, idx: any) => ctrl.value ? field.options[idx] : null)
+                .filter((v: any) => v !== null)
               : this.formGroup.get(field.key)?.value
           }))
         };
-      this.formTemplateService.saveTemplate(updatedTemplate);
-      this.snackBar.open('Form submitted successfully!', 'Close', {
-        duration: 3000,
-        panelClass: ['success-snackbar']
-      });
-    // ✅ Reset the form
-    this.clearForm();
-    } else {
-      this.formGroup.markAllAsTouched();
-      this.snackBar.open('Please fill all required fields correctly!', 'Close', {
-        duration: 3000,
-        panelClass: ['error-snackbar']
-      });
+        this.formTemplateService.saveTemplate(updatedTemplate);
+        this.snackBar.open('Form submitted successfully!', 'Close', {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+
+      } else {
+        this.formGroup.markAllAsTouched();
+        this.snackBar.open('Please fill all required fields correctly!', 'Close', {
+          duration: 3000,
+          panelClass: ['error-snackbar']
+        });
+      }
     }
   }
-}
 
-clearForm() {
-      // ✅ Reset the form to its original structure
-      this.formGroup.reset();
 
-      // ✅ Explicitly mark all controls as pristine and untouched
-      Object.keys(this.formGroup.controls).forEach(key => {
-        const control = this.formGroup.get(key);
-        control?.markAsPristine();
-        control?.markAsUntouched();
-      });
-  
-      // ✅ If you want to clear checkbox FormArrays too
-      this.fields.forEach(field => {
-        if (field.type === 'checkbox') {
-          const arr = this.getCheckboxOptions(field.key);
-          arr.controls.forEach((ctrl: any) => ctrl.setValue(false));
-          arr.markAsPristine();
-          arr.markAsUntouched();
-        }
-      });
-
-}
-getCheckboxOptions(key: string): any {
-  return this.formGroup.get(key) as FormArray;
-}
+  getCheckboxOptions(key: string): any {
+    return this.formGroup.get(key) as FormArray;
+  }
 
 }
